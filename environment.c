@@ -33,6 +33,7 @@ env_t *list_from_path(void)
  * environ_linked_list - builds a linked list from PATH
  * Return: pointer to linked list
  */
+env_t *environ_linked_list(void)
 {
 	int i, j;
 	char **env;
@@ -64,7 +65,7 @@ char *search_os(char *cmd, env_t *linkedlist_path)
 	if (ep == NULL || cmd == NULL)
 		return (NULL);
 	if ((_strncmp(cmd, "/", 1) == 0
-				|| _strncmp(cmd, "./", 2) == 0)
+			|| _strncmp(cmd, "./", 2) == 0)
 			&& access(cmd, F_OK | X_OK) == 0)
 	{
 		abs_path = _strdup(cmd);
