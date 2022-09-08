@@ -5,25 +5,15 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <signal.h>
-#include <string.h>
-/* end delete when functions are built */
-#include <fcntl.h>
-/* delete when functions are built */
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <errno.h>
 #include <stddef.h>
 #include <sys/stat.h>
-
-int _putchar(char c);
-void _puts(char *str);
-int _strlen(char *s);
-char *_strdup(char *str);
-char *concat_all(char *name, char *sep, char *value);
-
-char **splitstring(char *str, const char *delim);
-void execute(char **argv);
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+#include <fcntl.h>
+/* delete when functions are built */
+#include <string.h>
+/* end delete when functions are built */
 
 #define BUFSIZE 1024
 extern char **environ;
@@ -33,7 +23,7 @@ extern char **environ;
  * @len: length of the string
  * @next: points to the next node
  */
-typedef struct environ_type;
+typedef struct environ_type
 {
 	char *str;
 	unsigned int len;
@@ -45,7 +35,7 @@ typedef struct environ_type;
  * @cmd_str: commands (env, cd, alias, history)
  * @fun: function
  */
-typedef struct builtin_commands;
+typedef struct builtin_commands
 {
 	char *cmd_str;
 	int (*fun)();
@@ -60,6 +50,8 @@ int _cd(char **tokens);
 /* In builtins_2.c */
 int _setenv_usr(char **tokens);
 int _alias(void);
+int _history(void);
+int bowie(void);
 
 /* in environment.c */
 env_t *list_from_path(void);
@@ -106,44 +98,4 @@ void simple_print(const char *str);
 int _strlen_const(const char *s);
 size_t print_list(const env_t *h);
 
-/**
- * struct list_path - Linked list containing PATH directories
- * @dir: directory in path
- * @p: pointer to next node
- */
-typedef struct list_path
-{
-	char *dir;
-	struct list_path *p;
-} list_path;
-
-
-char *_getenv(const char *name);
-list_path *add_node_end(list_path **head, char *str);
-list_path *linkpath(char *path);
-char *_which(char *filename, list_path *head);
-
-/**
- * struct my_build - pointer to function with corresponding builtin command
- * @name: builtin command
- * @func: execute the buildin command
- */
-typedef struct my_build
-{
-	char *name;
-	void (*func)(char **);
-} my_build;
-
-void(*checkbuild(char **arv))(char **arv);
-int _atoi(char *s);
-void exitt(char **arv);
-void env(char **arv);
-void _setenv(char **arv);
-void _unsetenv(char **arv);
-
-void freearv(char **arv);
-void free_list(list_path *head);
-
-
-/* Update */
 #endif
