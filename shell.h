@@ -16,7 +16,7 @@
 #include <sys/stat.h>
 
 int _putchar(char c);
-void _puts(char *str;
+void _puts(char *str);
 int _strlen(char *s);
 char *_strdup(char *str);
 char *concat_all(char *name, char *sep, char *value);
@@ -33,7 +33,7 @@ extern char **environ;
  * @len: length of the string
  * @next: points to the next node
  */
-typedef struct environ_type
+typedef struct environ_type;
 {
 	char *str;
 	unsigned int len;
@@ -45,7 +45,7 @@ typedef struct environ_type
  * @cmd_str: commands (env, cd, alias, history)
  * @fun: function
  */
-typedef struct builtin_commands
+typedef struct builtin_commands;
 {
 	char *cmd_str;
 	int (*fun)();
